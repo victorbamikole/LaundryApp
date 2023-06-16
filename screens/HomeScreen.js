@@ -36,6 +36,8 @@ const HomeScreen = () => {
   const product = useSelector((state) => state.product.product);
   const dispatch = useDispatch();
 
+  console.log("product", product);
+
   const services = [
     {
       id: "0",

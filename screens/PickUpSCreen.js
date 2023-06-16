@@ -71,6 +71,7 @@ const PickUpScreen = () => {
     },
   ];
   const navigation = useNavigation();
+
   const proceedToCart = () => {
     if (!selectedDate || !selectedTime || !delivery) {
       Alert.alert(
