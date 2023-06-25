@@ -16,6 +16,8 @@ import {
   incrementQuantity,
 } from "../CartReducer";
 import { decrementQty, incrementQty } from "../ProductReducer";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../Firebase";
 // import { doc, setDoc } from "firebase/firestore";
 // import { auth, db } from "../firebase";
 
@@ -25,9 +27,9 @@ const CartScreen = () => {
   console.log("route.params", route.params);
   const total = cart.map((item) => item.quantity * item.price).reduce((curr, prev) => curr + prev, 0);
   const navigation = useNavigation();
-  // const userUid = auth.currentUser.uid;
+  const userUid = auth.currentUser.uid;
   const dispatch = useDispatch();
-  
+
   const placeOrder = async () => {
     navigation.navigate("Order");
     dispatch(cleanCart());

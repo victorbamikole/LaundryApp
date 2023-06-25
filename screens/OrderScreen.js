@@ -1,11 +1,11 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-// import LottieView from "lottie-react-native";
+import LottieView from "lottie-react-native";
 
 const OrderScreen = () => {
   return (
     <SafeAreaView>
-      {/* <LottieView
+      <LottieView
         source={require("../assets/thumbs.json")}
         style={{
           height: 360,
@@ -17,7 +17,7 @@ const OrderScreen = () => {
         autoPlay
         loop={false}
         speed={0.7}
-      /> */}
+      />
 
       <Text
         style={{
@@ -30,7 +30,7 @@ const OrderScreen = () => {
         Your order has been placed
       </Text>
 
-      {/* <LottieView
+      <LottieView
         source={require("../assets/sparkle.json")}
         style={{
           height: 300,
@@ -42,7 +42,7 @@ const OrderScreen = () => {
         autoPlay
         loop={false}
         speed={0.7}
-      /> */}
+      />
     </SafeAreaView>
   );
 }
