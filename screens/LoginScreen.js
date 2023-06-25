@@ -24,14 +24,14 @@ const LoginScreen = () => {
   useEffect(() => {
     setLoading(true);
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (!authUser) {
-        setLoading(false);
-      }
+      console.log("authuser", authUser);
       if (authUser) {
         navigation.navigate("Home");
       }
+      if (!authUser) {
+        setLoading(false);
+      }
     });
-
     return unsubscribe;
   }, []);
 

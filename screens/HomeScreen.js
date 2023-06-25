@@ -20,10 +20,13 @@ import DressItem from "../components/DressItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../ProductReducer";
 import { useNavigation } from "@react-navigation/native";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "../Firebase";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const cart = useSelector((state) => state.cart.cart);
+  const [items, setItems] = useState([]);
   const total = cart
     .map((item) => item.quantity * item.price)
     .reduce((curr, prev) => curr + prev, 0);
@@ -93,12 +96,34 @@ const HomeScreen = () => {
     if (product.length > 0) return;
 
     const fetchProducts = async () => {
-      services.map((service) => dispatch(getProducts(service)));
+      const colRef = collection(db, "types");
+      const docsSnap = await getDocs(colRef);
+      docsSnap.forEach((doc) => {
+        items.push(doc.data().item);
+      });
+      items.map((service) => dispatch(getProducts(service)));
     };
     fetchProducts();
   }, []);
 
   console.log(product);
+
+  //add items to firebase
+  // useEffect(() => {
+  //   const saveProducts = async () => {
+  //     try {
+  //      services.map((item) => {
+  //        const docRef = addDoc(collection(db, "types"), { item });
+  //         console.log("Document written with ID: ", docRef.id);
+  //       })
+
+  //     } catch (e) {
+  //       console.error("Error adding document: ", e);
+  //     }
+  //   };
+
+  //   saveProducts();
+  // }, []);
 
   useEffect(() => {
     checkIfLocationEnabled();

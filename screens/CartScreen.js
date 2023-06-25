@@ -27,6 +27,7 @@ const CartScreen = () => {
   const navigation = useNavigation();
   // const userUid = auth.currentUser.uid;
   const dispatch = useDispatch();
+  
   const placeOrder = async () => {
     navigation.navigate("Order");
     dispatch(cleanCart());
